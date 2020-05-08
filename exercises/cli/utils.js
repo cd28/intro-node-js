@@ -10,7 +10,10 @@ const contactsLocation = 'contacts.json'
  * it to a js object
  */
 const getContacts = () => {
-  
+  const contacts = fs.readFileSync(path.join(__dirname, contactsLocation), {
+    encoding: 'utf8'
+  })
+  return JSON.parse(contacts)
 }
 
 /**
@@ -19,7 +22,10 @@ const getContacts = () => {
  * @param {Object} contacts contacts object
  */
 const saveContacts = (contacts) => {
-
+  fs.writeFileSync(
+    path.join(__dirname, contactsLocation),
+    JSON.stringify(contacts, null, 2)
+  )
 }
 
 module.exports = {
